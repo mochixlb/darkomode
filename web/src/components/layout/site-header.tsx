@@ -155,9 +155,8 @@ export default function SiteHeader() {
           ? "transition-none"
           : "transition-transform duration-300 ease-out",
         navHidden && !prefersReducedMotion ? "-translate-y-full" : "translate-y-0",
-        isAtTop
-          ? "bg-white dark:bg-black"
-          : "bg-white/90 dark:bg-slate-950/90 shadow-sm shadow-slate-900/5 dark:shadow-black/40 supports-[backdrop-filter]:backdrop-blur-md"
+        "bg-white dark:bg-[#0a0a0a]",
+        !isAtTop && "shadow-sm shadow-slate-900/5 dark:shadow-black/40"
       )}
     >
       <nav aria-label="Main navigation" className="w-full px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4 flex items-center justify-between max-w-7xl mx-auto">
@@ -171,7 +170,7 @@ export default function SiteHeader() {
             alt="darko mode logo"
             width={40}
             height={40}
-            className="w-10 h-10 rounded-lg"
+            className="w-10 h-10 rounded-lg object-contain"
             sizes="40px"
             priority
           />
@@ -185,7 +184,7 @@ export default function SiteHeader() {
           aria-label={mounted ? `Switch to ${theme === "light" ? "dark" : "light"} mode` : "Toggle theme"}
           type="button"
         >
-          {theme === "light" ? (
+          {theme === "dark" ? (
             <MoonIcon 
               className="w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-200" 
               aria-hidden="true"

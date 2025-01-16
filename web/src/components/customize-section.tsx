@@ -6,7 +6,7 @@ import { DemoPopup } from "./demo/demo-popup";
 export function CustomizeSection() {
   return (
     <section
-      className="relative w-full py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden bg-white dark:bg-black"
+      className="relative w-full py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden bg-white dark:bg-[#0a0a0a]"
       aria-label="Customize theme"
     >
       <div className="relative max-w-7xl mx-auto">

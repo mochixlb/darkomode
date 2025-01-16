@@ -5,7 +5,7 @@ import Image from "next/image";
 export function FinalCTASection() {
   return (
     <section
-      className="relative w-full py-20 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden bg-white dark:bg-black"
+      className="relative w-full py-20 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden bg-white dark:bg-[#0a0a0a]"
       aria-label="Get started"
     >
       <div className="relative max-w-4xl mx-auto">

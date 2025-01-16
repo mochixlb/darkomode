@@ -104,7 +104,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth dark" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} antialiased bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50`}
+        className={`${geistSans.variable} antialiased bg-white dark:bg-[#0a0a0a] text-slate-900 dark:text-slate-50`}
       >
         <Script
           id="theme-init"

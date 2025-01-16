@@ -3,7 +3,7 @@ import { Github } from "lucide-react";
 
 export default function SiteFooter() {
   return (
-    <footer className="w-full px-4 sm:px-6 lg:px-8 py-10 sm:py-12 border-t border-slate-200/80 dark:border-slate-800/80 bg-slate-50/60 dark:bg-slate-950/40">
+    <footer className="w-full px-4 sm:px-6 lg:px-8 py-10 sm:py-12 border-t border-slate-200/80 dark:border-slate-800/80 bg-slate-50/60 dark:bg-[#0a0a0a]">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 text-sm text-slate-700 dark:text-slate-300">
           <Link

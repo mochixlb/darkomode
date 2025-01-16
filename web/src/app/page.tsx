@@ -9,7 +9,7 @@ import { DemoStateProvider } from "@/components/demo/demo-state-context";
 export default function Home() {
   return (
     <DemoStateProvider>
-      <div className="min-h-screen w-full flex flex-col bg-white dark:bg-black text-slate-900 dark:text-white selection:bg-blue-100 dark:selection:bg-blue-900 overflow-x-hidden">
+      <div className="min-h-screen w-full flex flex-col bg-white dark:bg-[#0a0a0a] text-slate-900 dark:text-white selection:bg-blue-100 dark:selection:bg-blue-900 overflow-x-hidden">
         <SiteHeader />
 
         <main className="min-h-[85vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
@@ -37,7 +37,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 justify-center w-full sm:w-auto px-4 sm:px-0">
               <a
                 href="#" // Replace with actual chrome web store link
-                className="flex items-center justify-center gap-2.5 border border-slate-300 dark:border-slate-700 bg-white dark:bg-black text-slate-900 dark:text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg font-medium text-base sm:text-lg hover:bg-slate-50 dark:hover:bg-slate-900 hover:border-slate-400 dark:hover:border-slate-600 transition-colors w-full sm:w-auto"
+                className="flex items-center justify-center gap-2.5 border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#0a0a0a] text-slate-900 dark:text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg font-medium text-base sm:text-lg hover:bg-slate-50 dark:hover:bg-slate-900 hover:border-slate-400 dark:hover:border-slate-600 transition-colors w-full sm:w-auto"
               >
               <Image
                 src="/chrome-logo.svg"
@@ -51,7 +51,7 @@ export default function Home() {
               </a>
               <a
                 href="#" // Replace with actual firefox addons link
-                className="flex items-center justify-center gap-2.5 border border-slate-300 dark:border-slate-700 bg-white dark:bg-black text-slate-900 dark:text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg font-medium text-base sm:text-lg hover:bg-slate-50 dark:hover:bg-slate-900 hover:border-slate-400 dark:hover:border-slate-600 transition-colors w-full sm:w-auto"
+                className="flex items-center justify-center gap-2.5 border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#0a0a0a] text-slate-900 dark:text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg font-medium text-base sm:text-lg hover:bg-slate-50 dark:hover:bg-slate-900 hover:border-slate-400 dark:hover:border-slate-600 transition-colors w-full sm:w-auto"
               >
               <Image
                 src="/firefox-logo.svg"

@@ -6,7 +6,7 @@ import SiteFooter from "@/components/layout/site-footer";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen w-screen flex flex-col bg-white dark:bg-black text-slate-900 dark:text-white">
+    <div className="min-h-screen w-screen flex flex-col bg-white dark:bg-[#0a0a0a] text-slate-900 dark:text-white">
       <SiteHeader />
 
       <div className="grow flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
