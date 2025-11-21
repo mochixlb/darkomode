@@ -24,6 +24,8 @@ function ThemeOption({
   isSelected,
   isWebsiteDark,
 }: ThemeOptionProps & { isWebsiteDark: boolean }) {
+  const iconRef = React.useRef<HTMLDivElement>(null);
+
   const primaryColor = isWebsiteDark
     ? "hsl(217.2 91.2% 59.8%)"
     : "hsl(221.2 83.2% 53.3%)";
@@ -52,6 +54,19 @@ function ThemeOption({
     ? "hsl(217.2 70% 45%)"
     : "hsl(221.2 83.2% 53.3%)";
 
+  const iconColor = isSelected ? selectedTextColor : foregroundColor;
+
+  // Update icon color when theme or selection changes
+  useEffect(() => {
+    if (iconRef.current) {
+      const icon = iconRef.current.querySelector("svg");
+      if (icon) {
+        icon.style.color = iconColor;
+        icon.style.stroke = iconColor;
+      }
+    }
+  }, [iconColor, isWebsiteDark, isSelected]);
+
   return (
     <Label
       htmlFor={`theme-${value}`}
@@ -77,9 +92,13 @@ function ThemeOption({
           e.currentTarget.style.backgroundColor = accentBg;
           e.currentTarget.style.color = accentFg;
           // Update icon color on hover
-          const icon = e.currentTarget.querySelector("svg");
-          if (icon) {
-            icon.style.color = accentFg;
+          if (iconRef.current) {
+            iconRef.current.style.color = accentFg;
+            const icon = iconRef.current.querySelector("svg");
+            if (icon) {
+              icon.style.color = accentFg;
+              icon.style.stroke = accentFg;
+            }
           }
         }
       }}
@@ -88,18 +107,25 @@ function ThemeOption({
           e.currentTarget.style.backgroundColor = backgroundColor;
           e.currentTarget.style.color = foregroundColor;
           // Reset icon color on leave
-          const icon = e.currentTarget.querySelector("svg");
-          if (icon) {
-            icon.style.color = foregroundColor;
+          if (iconRef.current) {
+            iconRef.current.style.color = iconColor;
+            const icon = iconRef.current.querySelector("svg");
+            if (icon) {
+              icon.style.color = iconColor;
+              icon.style.stroke = iconColor;
+            }
           }
         }
       }}
     >
       <RadioGroupItem value={value} id={`theme-${value}`} className="sr-only" />
       <div
+        ref={iconRef}
         className="h-5 w-5 shrink-0 flex items-center justify-center"
         aria-hidden="true"
-        style={{ color: isSelected ? selectedTextColor : foregroundColor }}
+        style={{
+          color: iconColor,
+        }}
       >
         <Icon className="h-5 w-5" />
       </div>
@@ -181,7 +207,7 @@ export function DemoThemeTab({ isWebsiteDark }: DemoThemeTabProps) {
           <img
             src="/icon.png"
             alt="darko mode"
-            className="w-4 h-4 flex-shrink-0 rounded"
+            className="w-4 h-4 shrink-0 rounded"
             onError={(e) => {
               e.currentTarget.style.display = "none";
             }}

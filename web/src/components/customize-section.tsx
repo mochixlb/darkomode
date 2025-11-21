@@ -10,49 +10,36 @@ export function CustomizeSection() {
       aria-label="Customize theme"
     >
       <div className="relative max-w-7xl mx-auto">
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-20">
-          {/* Content */}
-          <div className="flex-1 max-w-xl lg:max-w-lg order-1 lg:order-1">
-            <div className="space-y-6">
-              <div className="text-center lg:text-left">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4 sm:mb-5 text-slate-900 dark:text-white">
-                  Fine-tune your experience.
-                </h2>
-                <p className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
-                  Adjust brightness, contrast, saturation, and apply color
-                  effects to match your preferences.
-                </p>
-              </div>
+        <div className="flex flex-col items-center gap-12 lg:gap-16">
+          {/* Text Section - Centered above */}
+          <div className="text-center max-w-3xl">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4 sm:mb-5 text-slate-900 dark:text-white">
+              Fine-tune your experience.
+            </h2>
+            <p className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
+              Adjust brightness, contrast, saturation, and apply color effects
+              to match your preferences.
+            </p>
+          </div>
 
-              {/* Laptop Image - Hidden on mobile, shown on desktop */}
-              <div className="hidden lg:block relative w-full max-w-xs">
-                <Image
-                  src="/darko-laptop.webp"
-                  alt="darko mode customization interface"
-                  width={800}
-                  height={1200}
-                  className="w-full h-auto object-contain rounded-lg"
-                  priority
-                />
-              </div>
+          {/* Demo Extension and Laptop Image - Side by side */}
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-16 w-full">
+            {/* Demo Popup */}
+            <div className="shrink-0">
+              <DemoPopup initialTab="customize" />
             </div>
-          </div>
 
-          {/* Demo Popup */}
-          <div className="flex-shrink-0 order-2 lg:order-2">
-            <DemoPopup initialTab="customize" />
-          </div>
-
-          {/* Laptop Image - Shown on mobile, below demo extension */}
-          <div className="lg:hidden relative w-full max-w-xs mx-auto order-3">
-            <Image
-              src="/darko-laptop.webp"
-              alt="darko mode customization interface"
-              width={800}
-              height={1200}
-              className="w-full h-auto object-contain rounded-lg"
-              priority
-            />
+            {/* Laptop Image */}
+            <div className="relative w-full max-w-xs lg:max-w-[320px]">
+              <Image
+                src="/darko-laptop.webp"
+                alt="darko mode customization interface"
+                width={800}
+                height={1200}
+                className="w-full h-auto object-contain rounded-lg"
+                priority
+              />
+            </div>
           </div>
         </div>
       </div>
