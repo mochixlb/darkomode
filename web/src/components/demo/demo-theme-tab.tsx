@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import MoonIcon from "@heroicons/react/24/outline/MoonIcon";
@@ -166,14 +166,41 @@ export function DemoThemeTab({ isWebsiteDark }: DemoThemeTabProps) {
     return isWebsiteDark ? "dark" : "light";
   });
 
+  // Track if we're making an internal change to prevent useEffect from overriding user selection
+  const isInternalChangeRef = useRef(false);
+  // Track previous isWebsiteDark to detect external changes
+  const prevIsWebsiteDarkRef = useRef(isWebsiteDark);
+
   // Sync selectedMode when theme changes externally (e.g., from navbar)
+  // But don't sync if the change came from within this component
   useEffect(() => {
-    setSelectedMode(isWebsiteDark ? "dark" : "light");
+    // Skip if this change came from within this component
+    if (isInternalChangeRef.current) {
+      isInternalChangeRef.current = false;
+      prevIsWebsiteDarkRef.current = isWebsiteDark;
+      return;
+    }
+
+    // Only sync if isWebsiteDark actually changed
+    if (prevIsWebsiteDarkRef.current !== isWebsiteDark) {
+      prevIsWebsiteDarkRef.current = isWebsiteDark;
+      // Only sync for "dark" and "light" modes, not "auto" or "off"
+      // This ensures that when user selects "system" or "off", the dial stays on that option
+      setSelectedMode((currentMode) => {
+        if (currentMode === "dark" || currentMode === "light") {
+          return isWebsiteDark ? "dark" : "light";
+        }
+        return currentMode;
+      });
+    }
   }, [isWebsiteDark]);
 
   const handleValueChange = (value: string) => {
     const mode = value as ThemeMode;
     setSelectedMode(mode);
+
+    // Mark that we're making an internal change
+    isInternalChangeRef.current = true;
 
     // Store current scroll position to prevent unwanted scrolling
     const scrollY = window.scrollY;
