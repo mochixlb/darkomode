@@ -3,7 +3,6 @@ import type { FilterSettings } from "@/types/index";
 
 /**
  * Shadow DOM style manager for applying dark mode filters to shadow roots
- * Follows 2025 best practices for Shadow DOM styling in browser extensions
  */
 export class ShadowDOMStyleManager {
   private shadowRoots: Set<ShadowRoot> = new Set();
