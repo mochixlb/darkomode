@@ -12,9 +12,13 @@ import { useDemoState } from "./demo-state-context";
 
 interface DemoPopupProps {
   initialTab?: TabId;
+  ariaLabel?: string;
 }
 
-export function DemoPopup({ initialTab = "theme" }: DemoPopupProps) {
+export function DemoPopup({
+  initialTab = "theme",
+  ariaLabel = "darko mode extension demo",
+}: DemoPopupProps) {
   const { state, handleFiltersChange, handleReset } = useDemoState();
   const { filters, isWebsiteDark } = state;
   const [activeTab, setActiveTab] = useState<TabId>(initialTab);
@@ -23,7 +27,7 @@ export function DemoPopup({ initialTab = "theme" }: DemoPopupProps) {
     <div
       className="w-80 h-[600px] flex flex-col border overflow-hidden"
       role="region"
-      aria-label="darko mode extension demo"
+      aria-label={ariaLabel}
       style={{
         fontFamily:
           '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
@@ -113,6 +117,7 @@ export function DemoPopup({ initialTab = "theme" }: DemoPopupProps) {
           activeTab={activeTab}
           onTabChange={setActiveTab}
           isWebsiteDark={isWebsiteDark}
+          ariaLabel={`${ariaLabel} - navigation`}
         />
       </div>
     </div>

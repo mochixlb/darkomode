@@ -15,7 +15,12 @@ export function ThemeModesSection() {
           <div className="flex-shrink-0 order-2 lg:order-1 z-10">
             <div className="relative">
               <div className="absolute -inset-4 bg-blue-500/20 dark:bg-blue-500/20 rounded-full blur-2xl -z-10" />
-              <DemoPopup />
+              <div className="mb-3 text-center">
+                <p className="text-sm text-slate-600 dark:text-slate-300 font-medium">
+                  Try switching themes ↓
+                </p>
+              </div>
+              <DemoPopup ariaLabel="darko mode extension demo - theme selection" />
             </div>
           </div>
 

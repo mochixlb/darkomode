@@ -27,7 +27,15 @@ export function CustomizeSection() {
             {/* Demo Popup */}
             <div className="shrink-0 relative z-10">
               <div className="absolute -inset-8 bg-cyan-500/10 dark:bg-cyan-500/20 rounded-full blur-3xl -z-10" />
-              <DemoPopup initialTab="customize" />
+              <div className="mb-3 text-center">
+                <p className="text-sm text-slate-600 dark:text-slate-300 font-medium">
+                  Try adjusting the sliders ↓
+                </p>
+              </div>
+              <DemoPopup
+                initialTab="customize"
+                ariaLabel="darko mode extension demo - customization"
+              />
             </div>
 
             {/* Laptop Image */}

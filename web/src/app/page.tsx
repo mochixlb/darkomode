@@ -64,6 +64,13 @@ export default function Home() {
           </div>
         </main>
 
+        {/* Demo Introduction */}
+        <section aria-label="Demo introduction" className="w-full px-4 sm:px-6 lg:px-8 py-8 text-center">
+          <p className="text-sm text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+            Try the interactive demos below—this is the real extension interface.
+          </p>
+        </section>
+
         <ThemeModesSection />
         <CustomizeSection />
         <FinalCTASection />

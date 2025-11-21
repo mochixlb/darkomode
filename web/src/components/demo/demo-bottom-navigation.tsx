@@ -18,6 +18,7 @@ interface DemoBottomNavigationProps {
   activeTab: TabId;
   onTabChange: (tab: TabId) => void;
   isWebsiteDark: boolean;
+  ariaLabel?: string;
 }
 
 export const tabs: Tab[] = [
@@ -29,13 +30,15 @@ export function DemoBottomNavigation({
   activeTab,
   onTabChange,
   isWebsiteDark,
+  ariaLabel = "Extension navigation",
 }: DemoBottomNavigationProps) {
   // Static icon for theme tab - always show moon icon (dark mode)
   const getThemeIcon = () => MoonIcon;
 
   // Calculate colors based on current isWebsiteDark state
+  // Using lighter blue for dark mode to meet WCAG AA contrast ratio (4.5:1)
   const primaryColor = isWebsiteDark
-    ? "hsl(217.2 91.2% 59.8%)"
+    ? "hsl(217.2 91.2% 72%)"
     : "hsl(221.2 83.2% 53.3%)";
   const mutedForegroundColor = isWebsiteDark
     ? "hsl(215 20.2% 65.1%)"
@@ -49,7 +52,7 @@ export function DemoBottomNavigation({
 
   return (
     <nav
-      aria-label="Extension navigation"
+      aria-label={ariaLabel}
       className="border-t"
       style={{
         borderColor,
