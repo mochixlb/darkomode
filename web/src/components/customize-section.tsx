@@ -23,20 +23,22 @@ export function CustomizeSection() {
           </div>
 
           {/* Demo Extension and Laptop Image - Side by side */}
-          <div className="flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-16 w-full">
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-32 w-full">
             {/* Demo Popup */}
-            <div className="shrink-0">
+            <div className="shrink-0 relative z-10">
+              <div className="absolute -inset-8 bg-cyan-500/10 dark:bg-cyan-500/20 rounded-full blur-3xl -z-10" />
               <DemoPopup initialTab="customize" />
             </div>
 
             {/* Laptop Image */}
             <div className="relative w-full max-w-xs lg:max-w-[320px]">
+              <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-purple-500/20 dark:from-blue-500/20 dark:to-purple-500/20 blur-2xl rounded-full -z-10 transform scale-110" />
               <Image
                 src="/darko-laptop.webp"
                 alt="darko mode customization interface"
                 width={800}
                 height={1200}
-                className="w-full h-auto object-contain rounded-lg"
+                className="w-full h-auto object-contain rounded-lg rotate-2 hover:rotate-0 transition-transform duration-500 drop-shadow-2xl"
                 priority
               />
             </div>

@@ -12,8 +12,11 @@ export function ThemeModesSection() {
       <div className="relative max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-20">
           {/* Demo Popup */}
-          <div className="flex-shrink-0 order-2 lg:order-1">
-            <DemoPopup />
+          <div className="flex-shrink-0 order-2 lg:order-1 z-10">
+            <div className="relative">
+              <div className="absolute -inset-4 bg-blue-500/20 dark:bg-blue-500/20 rounded-full blur-2xl -z-10" />
+              <DemoPopup />
+            </div>
           </div>
 
           {/* Content */}
