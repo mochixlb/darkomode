@@ -40,12 +40,6 @@ export function DemoBottomNavigation({
   const mutedForegroundColor = isWebsiteDark
     ? "hsl(215 20.2% 65.1%)"
     : "hsl(215.4 16.3% 35%)";
-  const hoverBgColor = isWebsiteDark
-    ? "hsl(217.2 32.6% 17.5% / 0.5)"
-    : "hsl(210 40% 96.1% / 0.5)";
-  const activeBgColor = isWebsiteDark
-    ? "hsl(217.2 32.6% 17.5% / 0.7)"
-    : "hsl(210 40% 96.1% / 0.7)";
   const borderColor = isWebsiteDark
     ? "hsl(217.2 32.6% 17.5%)"
     : "hsl(214.3 31.8% 91.4%)";
@@ -73,40 +67,12 @@ export function DemoBottomNavigation({
               onClick={() => onTabChange(tab.id)}
               className={cn(
                 "flex flex-col items-center justify-center gap-1.5 px-4 py-4 flex-1 relative min-h-[64px]",
-                "focus-visible:outline-none cursor-pointer transition-colors",
-                !isActive && "hover:bg-opacity-50 active:bg-opacity-70"
+                "focus-visible:outline-none cursor-pointer"
               )}
-              style={
-                {
-                  pointerEvents: "auto",
-                  color: isActive ? primaryColor : mutedForegroundColor,
-                  backgroundColor: "transparent",
-                  "--hover-bg": hoverBgColor,
-                  "--active-bg": activeBgColor,
-                } as React.CSSProperties & {
-                  "--hover-bg": string;
-                  "--active-bg": string;
-                }
-              }
-              onMouseEnter={(e) => {
-                if (!isActive) {
-                  e.currentTarget.style.backgroundColor = hoverBgColor;
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (!isActive) {
-                  e.currentTarget.style.backgroundColor = "transparent";
-                }
-              }}
-              onMouseDown={(e) => {
-                if (!isActive) {
-                  e.currentTarget.style.backgroundColor = activeBgColor;
-                }
-              }}
-              onMouseUp={(e) => {
-                if (!isActive) {
-                  e.currentTarget.style.backgroundColor = hoverBgColor;
-                }
+              style={{
+                pointerEvents: "auto",
+                color: isActive ? primaryColor : mutedForegroundColor,
+                backgroundColor: "transparent",
               }}
               aria-label={tab.label}
               aria-current={isActive ? "page" : undefined}

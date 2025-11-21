@@ -175,6 +175,10 @@ export function DemoThemeTab({ isWebsiteDark }: DemoThemeTabProps) {
     const mode = value as ThemeMode;
     setSelectedMode(mode);
 
+    // Store current scroll position to prevent unwanted scrolling
+    const scrollY = window.scrollY;
+    const scrollX = window.scrollX;
+
     // Dark mode, System, and Off all set dark mode
     // Light mode sets light mode
     if (mode === "light") {
@@ -183,6 +187,22 @@ export function DemoThemeTab({ isWebsiteDark }: DemoThemeTabProps) {
       // dark, auto, or off all set dark mode
       setTheme("dark");
     }
+
+    // Restore scroll position multiple times to prevent scrolling to first demo
+    // This handles React re-renders and any delayed scroll behavior
+    const restoreScroll = () => {
+      window.scrollTo(scrollX, scrollY);
+    };
+
+    // Restore immediately and after React re-renders
+    requestAnimationFrame(restoreScroll);
+    requestAnimationFrame(() => {
+      requestAnimationFrame(restoreScroll);
+    });
+
+    // Also restore after a short delay to catch any delayed scroll behavior
+    setTimeout(restoreScroll, 0);
+    setTimeout(restoreScroll, 10);
   };
 
   return (
