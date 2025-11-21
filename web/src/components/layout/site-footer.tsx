@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Github } from "lucide-react";
+import { CodeBracketIcon } from "@heroicons/react/24/outline";
 
 export default function SiteFooter() {
   return (
@@ -26,7 +26,7 @@ export default function SiteFooter() {
             rel="noopener noreferrer"
             className="flex items-center justify-center sm:justify-start gap-2 py-2.5 px-4 sm:py-0 sm:px-0 -mx-4 sm:mx-0 w-full sm:w-auto hover:text-slate-900 dark:hover:text-slate-100 active:text-slate-900 dark:active:text-slate-100 transition-colors duration-200 rounded-lg sm:rounded-none hover:bg-slate-100/70 dark:hover:bg-slate-900/60 sm:hover:bg-transparent sm:dark:hover:bg-transparent"
           >
-            <Github className="w-4 h-4" />
+            <CodeBracketIcon className="w-4 h-4" />
             <span>GitHub</span>
           </Link>
         </div>

@@ -6,7 +6,12 @@ import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 
 export default function SiteHeader() {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
+    if (typeof document !== "undefined") {
+      return document.documentElement.classList.contains("dark") ? "dark" : "light";
+    }
+    return "light";
+  });
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -16,26 +21,17 @@ export default function SiteHeader() {
     setTheme(initialTheme);
     setMounted(true);
 
-    // Listen for system preference changes (only if no saved preference)
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleSystemThemeChange = (e: MediaQueryListEvent) => {
-      const savedTheme = localStorage.getItem("theme");
-      if (!savedTheme) {
-        const newTheme = e.matches ? "dark" : "light";
-        setTheme(newTheme);
-        document.documentElement.classList.toggle("dark", newTheme === "dark");
-      }
-    };
+    // Watch for theme changes on the document (from demo extension or other sources)
+    const observer = new MutationObserver(() => {
+      const isDark = document.documentElement.classList.contains("dark");
+      setTheme(isDark ? "dark" : "light");
+    });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
 
-    // Modern browsers
-    if (mediaQuery.addEventListener) {
-      mediaQuery.addEventListener("change", handleSystemThemeChange);
-      return () => mediaQuery.removeEventListener("change", handleSystemThemeChange);
-    } else {
-      // Fallback for older browsers
-      mediaQuery.addListener(handleSystemThemeChange);
-      return () => mediaQuery.removeListener(handleSystemThemeChange);
-    }
+    return () => observer.disconnect();
   }, []);
 
   const toggleTheme = () => {
@@ -73,8 +69,8 @@ export default function SiteHeader() {
   };
 
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-200/80 dark:border-slate-800/80 bg-white/85 dark:bg-black/70 supports-[backdrop-filter]:backdrop-blur">
-      <nav className="w-full px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4 flex items-center justify-between max-w-7xl mx-auto">
+    <header className="sticky top-0 z-40 border-b border-slate-200/80 dark:border-slate-800/80 bg-white dark:bg-black">
+      <nav aria-label="Main navigation" className="w-full px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4 flex items-center justify-between max-w-7xl mx-auto">
         <Link
           href="/"
           className="flex items-center gap-2 hover:opacity-80 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 dark:focus-visible:ring-slate-600 focus-visible:ring-offset-2 rounded-md"
@@ -82,13 +78,13 @@ export default function SiteHeader() {
         >
           <Image
             src="/icon.png"
-            alt="Darko Mode Logo"
+            alt="darko mode logo"
             width={40}
             height={40}
             className="w-10 h-10 rounded-lg"
           />
           <span className="font-semibold text-lg sm:text-xl tracking-tight text-slate-900 dark:text-slate-100">
-            Darko Mode
+            darko mode
           </span>
         </Link>
         <button

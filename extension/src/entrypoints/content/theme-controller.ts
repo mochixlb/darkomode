@@ -5,7 +5,11 @@ import type {
   UpdateFiltersMessage,
 } from "@/types/index";
 import { DARKO_MODE_ID, DEFAULT_FILTERS } from "@/constants";
-import { resolveThemeMode, isPageNativelyDark } from "@/utils/theme";
+import {
+  resolveThemeMode,
+  isPageNativelyDark,
+  buildFilterStrings,
+} from "@/utils/theme";
 import { shadowDOMStyleManager } from "@/utils/shadow-dom";
 
 /**
@@ -50,43 +54,6 @@ export function getSettings(): {
 function resetNativeDarkModeCache(): void {
   cachedNativeDarkMode = null;
   hasDetectedNativeDarkMode = false;
-}
-
-/**
- * Builds CSS filter strings from filter settings
- */
-function buildFilterStrings(
-  filters: FilterSettings,
-  isDark: boolean
-): { pageFilter: string; mediaFilter: string } {
-  const baseParts: string[] = [];
-  const customParts: string[] = [];
-
-  if (isDark) {
-    baseParts.push("invert(1)");
-    baseParts.push("hue-rotate(180deg)");
-  }
-
-  if (filters.brightness !== 100) {
-    customParts.push(`brightness(${filters.brightness}%)`);
-  }
-  if (filters.contrast !== 100) {
-    customParts.push(`contrast(${filters.contrast}%)`);
-  }
-  if (filters.saturation !== 100) {
-    customParts.push(`saturate(${filters.saturation}%)`);
-  }
-  if (filters.sepia !== 0) {
-    customParts.push(`sepia(${filters.sepia}%)`);
-  }
-  if (filters.grayscale !== 0) {
-    customParts.push(`grayscale(${filters.grayscale}%)`);
-  }
-
-  const pageFilter = [...baseParts, ...customParts].join(" ");
-  const mediaFilter = baseParts.join(" ");
-
-  return { pageFilter, mediaFilter };
 }
 
 /**

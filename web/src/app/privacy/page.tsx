@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 import SiteHeader from "@/components/layout/site-header";
 import SiteFooter from "@/components/layout/site-footer";
 import Section from "@/components/legal/section";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Darko Mode",
+  title: "Privacy Policy — darko mode",
   description:
-    "Plain-language privacy policy for Darko Mode. We don’t collect or sell your personal data.",
+    "Plain-language privacy policy for darko mode. We don't collect or sell your personal data.",
 };
 
 export default function PrivacyPage() {
@@ -26,7 +26,7 @@ export default function PrivacyPage() {
               className="inline-flex items-center gap-2 text-slate-800 dark:text-slate-200 hover:text-slate-900 dark:hover:text-slate-100 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 dark:focus-visible:ring-slate-600 rounded-md"
               aria-label="Back to home"
             >
-              <ArrowLeft className="w-4 h-4" />
+              <ArrowLeftIcon className="w-4 h-4" />
               <span className="text-sm font-medium">Back</span>
             </Link>
           </div>
@@ -41,7 +41,7 @@ export default function PrivacyPage() {
         <main className="max-w-3xl mx-auto">
           <Section title="We don't track you">
             <p className="text-slate-800 dark:text-slate-200">
-              We built Darko Mode to make the web easier on your eyes by letting you toggle dark mode and adjust visual filters on websites—not to collect your data. We don't collect, store, or share your personal information. Everything runs in your browser, and your theme preferences stay with you.
+              We built darko mode to make the web easier on your eyes by letting you toggle dark mode and adjust visual filters on websites—not to collect your data. We don't collect, store, or share your personal information. Everything runs in your browser, and your theme preferences stay with you.
             </p>
           </Section>
 
@@ -61,7 +61,7 @@ export default function PrivacyPage() {
 
           <Section title="How the extension works">
             <p className="text-slate-800 dark:text-slate-200 mb-3">
-              Darko Mode runs entirely in your browser. The extension stores your theme mode (Dark Mode, Light Mode, System, or Off) and filter settings (brightness, contrast, saturation, sepia, grayscale) locally in your browser's extension storage. If your browser's sync is enabled, these preferences may sync across your own devices, but we don't receive this data. This means:
+              darko mode runs entirely in your browser. The extension stores your theme mode (Dark Mode, Light Mode, System, or Off) and filter settings (brightness, contrast, saturation, sepia, grayscale) locally in your browser's extension storage. If your browser's sync is enabled, these preferences may sync across your own devices, but we don't receive this data. This means:
             </p>
             <ul className="list-disc pl-5 space-y-2 text-slate-800 dark:text-slate-200">
               <li>Your preferences are stored only in your browser's extension storage</li>
@@ -97,25 +97,25 @@ export default function PrivacyPage() {
 
           <Section title="Children's privacy">
             <p className="text-slate-800 dark:text-slate-200">
-              Darko Mode is not directed to children under 13 (or under 16 in the EU). Since we don't collect personal information from anyone, we also don't knowingly collect personal information from children. If you're a parent or guardian and believe your child has provided us with personal information, please note that we don't collect such information, so there's nothing for us to delete.
+              darko mode is not directed to children under 13 (or under 16 in the EU). Since we don't collect personal information from anyone, we also don't knowingly collect personal information from children. If you're a parent or guardian and believe your child has provided us with personal information, please note that we don't collect such information, so there's nothing for us to delete.
             </p>
           </Section>
 
           <Section title="Data controller">
             <p className="text-slate-800 dark:text-slate-200">
-              For the purposes of GDPR and other privacy laws, Darko Mode is the data controller. However, since we don't collect or process personal data, there's no data processing to control.
+              For the purposes of GDPR and other privacy laws, darko mode is the data controller. However, since we don't collect or process personal data, there's no data processing to control.
             </p>
           </Section>
 
           <Section title="Changes to this policy">
             <p className="text-slate-800 dark:text-slate-200">
-              We may update this privacy policy from time to time. When we do, we'll update the "Last updated" date at the top of this page. Since we don't collect contact information, we can't notify you directly of changes, but you can check this page anytime to see the current policy. Your continued use of Darko Mode after any changes means you accept the updated policy.
+              We may update this privacy policy from time to time. When we do, we'll update the "Last updated" date at the top of this page. Since we don't collect contact information, we can't notify you directly of changes, but you can check this page anytime to see the current policy. Your continued use of darko mode after any changes means you accept the updated policy.
             </p>
           </Section>
 
           <Section title="Open source transparency">
             <p className="text-slate-800 dark:text-slate-200">
-              Darko Mode is a free, open-source personal project. The complete source code is publicly available on{" "}
+              darko mode is a free, open-source personal project. The complete source code is publicly available on{" "}
               <a
                 href="https://github.com"
                 target="_blank"
@@ -130,7 +130,7 @@ export default function PrivacyPage() {
 
           <Section title="Questions">
             <p className="text-slate-800 dark:text-slate-200">
-              Since Darko Mode is open-source, you can review the{" "}
+              Since darko mode is open-source, you can review the{" "}
               <a
                 href="https://github.com"
                 target="_blank"

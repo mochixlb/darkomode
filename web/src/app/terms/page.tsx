@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 import SiteHeader from "@/components/layout/site-header";
 import SiteFooter from "@/components/layout/site-footer";
 import Section from "@/components/legal/section";
 
 export const metadata: Metadata = {
-  title: "Terms of Use — Darko Mode",
+  title: "Terms of Use — darko mode",
   description:
-    "Terms of use for Darko Mode - A free, open-source browser extension provided as-is.",
+    "Terms of use for darko mode - A free, open-source browser extension provided as-is.",
 };
 
 export default function TermsPage() {
@@ -26,7 +26,7 @@ export default function TermsPage() {
               className="inline-flex items-center gap-2 text-slate-800 dark:text-slate-200 hover:text-slate-900 dark:hover:text-slate-100 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 dark:focus-visible:ring-slate-600 rounded-md"
               aria-label="Back to home"
             >
-              <ArrowLeft className="w-4 h-4" />
+              <ArrowLeftIcon className="w-4 h-4" />
               <span className="text-sm font-medium">Back</span>
             </Link>
           </div>
@@ -41,7 +41,7 @@ export default function TermsPage() {
         <main className="max-w-3xl mx-auto">
           <Section title="Acceptance of terms">
             <p className="text-slate-800 dark:text-slate-200">
-              By installing or using Darko Mode, you agree to be bound by these
+              By installing or using darko mode, you agree to be bound by these
               Terms of Use. If you don't agree to these terms, please don't use
               the extension.
             </p>
@@ -49,7 +49,7 @@ export default function TermsPage() {
 
           <Section title="Description of service">
             <p className="text-slate-800 dark:text-slate-200">
-              Darko Mode is a free, open-source personal project that helps you
+              darko mode is a free, open-source personal project that helps you
               toggle dark mode and light mode on websites you visit. The
               extension applies visual filters (brightness, contrast,
               saturation, sepia, grayscale) to modify the appearance of web
@@ -64,7 +64,7 @@ export default function TermsPage() {
 
           <Section title="No warranties">
             <p className="text-slate-800 dark:text-slate-200 mb-3">
-              TO THE FULLEST EXTENT PERMITTED BY LAW, DARKO MODE IS PROVIDED "AS
+              TO THE FULLEST EXTENT PERMITTED BY LAW, darko mode IS PROVIDED "AS
               IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER
               EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO:
             </p>
@@ -102,7 +102,7 @@ export default function TermsPage() {
 
           <Section title="Use at your own risk">
             <p className="text-slate-800 dark:text-slate-200">
-              Darko Mode modifies the visual appearance of websites you visit by
+              darko mode modifies the visual appearance of websites you visit by
               applying CSS filters and color adjustments. You're solely
               responsible for:
             </p>
@@ -127,7 +127,7 @@ export default function TermsPage() {
             </ul>
             <p className="text-slate-800 dark:text-slate-200 mt-3">
               The extension requires broad permissions to modify websites you
-              visit. While we've designed Darko Mode to only apply visual
+              visit. While we've designed darko mode to only apply visual
               styling and not collect or transmit data, you should review the
               extension's permissions and source code before installing. You can
               limit where the extension runs using your browser's site access
@@ -144,7 +144,7 @@ export default function TermsPage() {
               OTHER INTANGIBLE LOSSES, RESULTING FROM:
             </p>
             <ul className="list-disc pl-5 space-y-2 text-slate-800 dark:text-slate-200">
-              <li>Your use or inability to use Darko Mode</li>
+              <li>Your use or inability to use darko mode</li>
               <li>
                 Visual modifications that make websites unreadable, unusable, or
                 inaccessible
@@ -177,7 +177,7 @@ export default function TermsPage() {
 
           <Section title="Indemnification">
             <p className="text-slate-800 dark:text-slate-200">
-              You agree to indemnify, defend, and hold harmless Darko Mode and
+              You agree to indemnify, defend, and hold harmless darko mode and
               its operators from any claims, damages, losses, liabilities, and
               expenses (including legal fees) arising from your use of the
               extension or your violation of these Terms of Use.
@@ -186,7 +186,7 @@ export default function TermsPage() {
 
           <Section title="Extension availability">
             <p className="text-slate-800 dark:text-slate-200">
-              We don't guarantee that Darko Mode will always be available,
+              We don't guarantee that darko mode will always be available,
               uninterrupted, or error-free. The extension may be unavailable due
               to browser updates, extension store policies, maintenance,
               technical issues, or other reasons beyond our control. We're not
@@ -197,7 +197,7 @@ export default function TermsPage() {
 
           <Section title="Open source license">
             <p className="text-slate-800 dark:text-slate-200 mb-3">
-              Darko Mode is open-source software. The source code is publicly
+              darko mode is open-source software. The source code is publicly
               available and licensed under the MIT License, which means:
             </p>
             <ul className="list-disc pl-5 space-y-2 text-slate-800 dark:text-slate-200">
@@ -226,22 +226,22 @@ export default function TermsPage() {
 
           <Section title="Intellectual property">
             <p className="text-slate-800 dark:text-slate-200 mb-3">
-              The Darko Mode extension, its design, code, and content are
+              The darko mode extension, its design, code, and content are
               available under the MIT License. This means you have broad rights
               to use, modify, and distribute the code, subject to the license
               terms.
             </p>
             <p className="text-slate-800 dark:text-slate-200">
-              When using Darko Mode, you may not remove copyright notices or
+              When using darko mode, you may not remove copyright notices or
               license information from the code. If you create derivative works
-              based on Darko Mode, you should include appropriate attribution
+              based on darko mode, you should include appropriate attribution
               and license information.
             </p>
           </Section>
 
           <Section title="Prohibited uses">
             <p className="text-slate-800 dark:text-slate-200 mb-3">
-              You agree not to use Darko Mode:
+              You agree not to use darko mode:
             </p>
             <ul className="list-disc pl-5 space-y-2 text-slate-800 dark:text-slate-200">
               <li>
@@ -283,7 +283,7 @@ export default function TermsPage() {
               update the "Last updated" date at the top of this page. Since we
               don't collect contact information, we can't notify you directly of
               changes, but you can check this page anytime to see the current
-              terms. Your continued use of Darko Mode after any changes means
+              terms. Your continued use of darko mode after any changes means
               you accept the updated terms. If you don't agree to the changes,
               you should stop using the extension and uninstall it.
             </p>
@@ -314,14 +314,14 @@ export default function TermsPage() {
               >
                 Privacy Policy
               </Link>
-              , constitute the entire agreement between you and Darko Mode
+              , constitute the entire agreement between you and darko mode
               regarding your use of the extension.
             </p>
           </Section>
 
           <Section title="Questions">
             <p className="text-slate-800 dark:text-slate-200">
-              Since Darko Mode is open-source, you can review the{" "}
+              Since darko mode is open-source, you can review the{" "}
               <a
                 href="https://github.com"
                 target="_blank"
