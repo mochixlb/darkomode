@@ -6,6 +6,8 @@ import "./globals.css";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -27,6 +29,13 @@ export const metadata: Metadata = {
   authors: [{ name: "darko mode" }],
   creator: "darko mode",
   publisher: "darko mode",
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+    userScalable: true,
+    viewportFit: "cover",
+  },
   formatDetection: {
     email: false,
     address: false,

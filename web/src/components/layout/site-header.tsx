@@ -121,16 +121,11 @@ export default function SiteHeader() {
   }, [prefersReducedMotion]);
 
   const toggleTheme = () => {
-    console.log("toggleTheme called, mounted:", mounted, "current theme:", theme);
-    
     if (!mounted) {
-      console.warn("Theme toggle blocked: component not mounted yet");
       return; // Prevent toggling before hydration
     }
     
     const newTheme = theme === "light" ? "dark" : "light";
-    console.log("Switching theme from", theme, "to", newTheme);
-    
     setTheme(newTheme);
     
     try {
@@ -141,10 +136,8 @@ export default function SiteHeader() {
       } else if (newTheme === "light" && hasDark) {
         document.documentElement.classList.remove("dark");
       }
-      console.log("Theme updated successfully. Dark class present:", document.documentElement.classList.contains("dark"));
     } catch (error) {
       // Handle localStorage errors (e.g., private browsing mode)
-      console.error("Failed to save theme preference:", error);
       const hasDark = document.documentElement.classList.contains("dark");
       if (newTheme === "dark" && !hasDark) {
         document.documentElement.classList.add("dark");
@@ -179,6 +172,8 @@ export default function SiteHeader() {
             width={40}
             height={40}
             className="w-10 h-10 rounded-lg"
+            sizes="40px"
+            priority
           />
           <span className="font-semibold text-lg sm:text-xl tracking-tight text-slate-900 dark:text-slate-100">
             darko mode

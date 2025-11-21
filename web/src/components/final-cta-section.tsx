@@ -30,6 +30,7 @@ export function FinalCTASection() {
                 width={32}
                 height={32}
                 className="w-7 h-7 sm:w-8 sm:h-8"
+                sizes="32px"
               />
               <span>Add to Chrome</span>
             </a>
@@ -43,6 +44,7 @@ export function FinalCTASection() {
                 width={32}
                 height={32}
                 className="w-7 h-7 sm:w-8 sm:h-8"
+                sizes="32px"
               />
               <span>Add to Firefox</span>
             </a>

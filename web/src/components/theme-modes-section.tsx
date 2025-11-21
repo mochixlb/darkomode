@@ -47,7 +47,8 @@ export function ThemeModesSection() {
                     width={1536}
                     height={1024}
                     className="w-full h-auto object-contain"
-                    priority
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    loading="lazy"
                   />
                 </div>
 
@@ -59,7 +60,8 @@ export function ThemeModesSection() {
                     width={1536}
                     height={1024}
                     className="w-full h-auto object-contain"
-                    priority
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    loading="lazy"
                   />
                 </div>
               </div>

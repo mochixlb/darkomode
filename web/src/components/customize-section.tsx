@@ -47,7 +47,8 @@ export function CustomizeSection() {
                 width={800}
                 height={1200}
                 className="w-full h-auto object-contain rounded-lg rotate-2 hover:rotate-0 transition-transform duration-500 drop-shadow-2xl"
-                priority
+                sizes="(max-width: 1024px) 100vw, 320px"
+                loading="lazy"
               />
             </div>
           </div>

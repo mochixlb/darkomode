@@ -9,7 +9,7 @@ import { DemoStateProvider } from "@/components/demo/demo-state-context";
 export default function Home() {
   return (
     <DemoStateProvider>
-      <div className="min-h-screen w-screen flex flex-col bg-white dark:bg-black text-slate-900 dark:text-white selection:bg-blue-100 dark:selection:bg-blue-900">
+      <div className="min-h-screen w-full flex flex-col bg-white dark:bg-black text-slate-900 dark:text-white selection:bg-blue-100 dark:selection:bg-blue-900 overflow-x-hidden">
         <SiteHeader />
 
         <main className="min-h-[85vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
@@ -22,6 +22,7 @@ export default function Home() {
                 height={200}
                 className="w-32 h-32 sm:w-40 sm:h-40 md:w-44 md:h-44 lg:w-48 lg:h-48 mx-auto"
                 priority
+                sizes="(max-width: 640px) 128px, (max-width: 768px) 160px, (max-width: 1024px) 176px, 192px"
               />
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-5 sm:mb-6 px-2 sm:whitespace-nowrap text-slate-900 dark:text-slate-100">
@@ -38,26 +39,28 @@ export default function Home() {
                 href="#" // Replace with actual chrome web store link
                 className="flex items-center justify-center gap-2.5 border border-slate-300 dark:border-slate-700 bg-white dark:bg-black text-slate-900 dark:text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg font-medium text-base sm:text-lg hover:bg-slate-50 dark:hover:bg-slate-900 hover:border-slate-400 dark:hover:border-slate-600 transition-colors w-full sm:w-auto"
               >
-                <Image
-                  src="/chrome-logo.svg"
-                  alt="Chrome Logo"
-                  width={28}
-                  height={28}
-                  className="w-6 h-6 sm:w-7 sm:h-7"
-                />
+              <Image
+                src="/chrome-logo.svg"
+                alt="Chrome Logo"
+                width={28}
+                height={28}
+                className="w-6 h-6 sm:w-7 sm:h-7"
+                sizes="28px"
+              />
                 <span>Add to Chrome</span>
               </a>
               <a
                 href="#" // Replace with actual firefox addons link
                 className="flex items-center justify-center gap-2.5 border border-slate-300 dark:border-slate-700 bg-white dark:bg-black text-slate-900 dark:text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg font-medium text-base sm:text-lg hover:bg-slate-50 dark:hover:bg-slate-900 hover:border-slate-400 dark:hover:border-slate-600 transition-colors w-full sm:w-auto"
               >
-                <Image
-                  src="/firefox-logo.svg"
-                  alt="Firefox Logo"
-                  width={28}
-                  height={28}
-                  className="w-6 h-6 sm:w-7 sm:h-7"
-                />
+              <Image
+                src="/firefox-logo.svg"
+                alt="Firefox Logo"
+                width={28}
+                height={28}
+                className="w-6 h-6 sm:w-7 sm:h-7"
+                sizes="28px"
+              />
                 <span>Add to Firefox</span>
               </a>
             </div>
