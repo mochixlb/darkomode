@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Geist } from "next/font/google";
 import "./globals.css";
 
@@ -8,10 +9,22 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://darkomode.com'),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_BASE_URL || "https://darkomode.com"
+  ),
   title: "Darko Mode - The Ultimate Dark Mode Extension",
-  description: "Toggle dark mode and light mode on any website. Customize brightness, contrast, and more with Darko Mode.",
-  keywords: ["dark mode", "browser extension", "dark theme", "accessibility", "eye strain", "chrome extension", "firefox extension", "safari extension"],
+  description:
+    "Toggle dark mode and light mode on any website. Customize brightness, contrast, and more with Darko Mode.",
+  keywords: [
+    "dark mode",
+    "browser extension",
+    "dark theme",
+    "accessibility",
+    "eye strain",
+    "chrome extension",
+    "firefox extension",
+    "safari extension",
+  ],
   authors: [{ name: "Darko Mode" }],
   creator: "Darko Mode",
   publisher: "Darko Mode",
@@ -35,7 +48,8 @@ export const metadata: Metadata = {
     url: "/",
     siteName: "Darko Mode",
     title: "Darko Mode - Dark mode for every website",
-    description: "Instantly toggle dark mode on any site. Adjust brightness, contrast, and filters to suit your eyes. Simple, fast, and free.",
+    description:
+      "Instantly toggle dark mode on any site. Adjust brightness, contrast, and filters to suit your eyes. Simple, fast, and free.",
     images: [
       {
         url: "/opengraph-image",
@@ -49,7 +63,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Darko Mode - Dark mode for every website",
-    description: "Instantly toggle dark mode on any site. Adjust brightness, contrast, and filters to suit your eyes. Simple, fast, and free.",
+    description:
+      "Instantly toggle dark mode on any site. Adjust brightness, contrast, and filters to suit your eyes. Simple, fast, and free.",
     images: [
       {
         url: "/opengraph-image",
@@ -79,10 +94,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} antialiased bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50`}
       >
+        <Script
+          id="theme-init"
+          strategy="beforeInteractive"
+          src="/theme-init.js"
+        />
         {children}
       </body>
     </html>

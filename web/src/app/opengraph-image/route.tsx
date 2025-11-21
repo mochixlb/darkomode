@@ -8,7 +8,12 @@ export const size = {
   height: 630,
 };
 
-export async function GET() {
+export async function GET(request: Request) {
+  // Get the base URL from the request
+  const url = new URL(request.url);
+  const baseUrl = `${url.protocol}//${url.host}`;
+  const owlImageUrl = `${baseUrl}/owl.webp`;
+
   return new ImageResponse(
     (
       <div
@@ -16,50 +21,74 @@ export async function GET() {
           height: "100%",
           width: "100%",
           display: "flex",
-          flexDirection: "column",
+          flexDirection: "row",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(135deg, #000000 0%, #1a1a1a 100%)",
-          padding: "80px",
+          background: "#000000",
+          padding: "60px 80px",
+          gap: "60px",
         }}
       >
+        {/* Owl Image */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexShrink: 0,
+          }}
+        >
+          <img
+            src={owlImageUrl}
+            alt="Darko Mode Owl"
+            width="280"
+            height="280"
+            style={{
+              objectFit: "contain",
+            }}
+          />
+        </div>
+
+        {/* Text Content */}
         <div
           style={{
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",
+            alignItems: "flex-start",
             justifyContent: "center",
+            flex: 1,
+            gap: "24px",
           }}
         >
           <h1
             style={{
-              fontSize: "80px",
+              fontSize: "72px",
               fontWeight: 700,
               color: "#ffffff",
               margin: 0,
-              letterSpacing: "-0.03em",
+              letterSpacing: "-0.02em",
               fontFamily:
                 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-              textAlign: "center",
               lineHeight: 1.1,
-              marginBottom: "20px",
             }}
           >
             Darko Mode
           </h1>
           <p
             style={{
-              fontSize: "36px",
+              fontSize: "32px",
               fontWeight: 400,
-              color: "#a1a1aa",
+              color: "#e5e5e5",
               margin: 0,
               letterSpacing: "-0.01em",
               fontFamily:
                 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-              textAlign: "center",
+              lineHeight: 1.4,
+              maxWidth: "600px",
             }}
           >
-            Dark mode for every website
+            Instantly toggle dark mode on any site. Adjust brightness, contrast,
+            and filters to suit your eyes. Simple, fast, and free.
           </p>
         </div>
       </div>

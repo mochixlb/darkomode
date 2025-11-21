@@ -10,24 +10,66 @@ export default function SiteHeader() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // Read initial theme from DOM (set by blocking script in layout)
+    const isDark = document.documentElement.classList.contains("dark");
+    const initialTheme = isDark ? "dark" : "light";
+    setTheme(initialTheme);
     setMounted(true);
-    const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
-    const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    if (savedTheme) {
-      setTheme(savedTheme);
-      document.documentElement.classList.toggle("dark", savedTheme === "dark");
+
+    // Listen for system preference changes (only if no saved preference)
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleSystemThemeChange = (e: MediaQueryListEvent) => {
+      const savedTheme = localStorage.getItem("theme");
+      if (!savedTheme) {
+        const newTheme = e.matches ? "dark" : "light";
+        setTheme(newTheme);
+        document.documentElement.classList.toggle("dark", newTheme === "dark");
+      }
+    };
+
+    // Modern browsers
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener("change", handleSystemThemeChange);
+      return () => mediaQuery.removeEventListener("change", handleSystemThemeChange);
     } else {
-      const initialTheme = systemPrefersDark ? "dark" : "light";
-      setTheme(initialTheme);
-      document.documentElement.classList.toggle("dark", initialTheme === "dark");
+      // Fallback for older browsers
+      mediaQuery.addListener(handleSystemThemeChange);
+      return () => mediaQuery.removeListener(handleSystemThemeChange);
     }
   }, []);
 
   const toggleTheme = () => {
+    console.log("toggleTheme called, mounted:", mounted, "current theme:", theme);
+    
+    if (!mounted) {
+      console.warn("Theme toggle blocked: component not mounted yet");
+      return; // Prevent toggling before hydration
+    }
+    
     const newTheme = theme === "light" ? "dark" : "light";
+    console.log("Switching theme from", theme, "to", newTheme);
+    
     setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-    document.documentElement.classList.toggle("dark", newTheme === "dark");
+    
+    try {
+      localStorage.setItem("theme", newTheme);
+      const hasDark = document.documentElement.classList.contains("dark");
+      if (newTheme === "dark" && !hasDark) {
+        document.documentElement.classList.add("dark");
+      } else if (newTheme === "light" && hasDark) {
+        document.documentElement.classList.remove("dark");
+      }
+      console.log("Theme updated successfully. Dark class present:", document.documentElement.classList.contains("dark"));
+    } catch (error) {
+      // Handle localStorage errors (e.g., private browsing mode)
+      console.error("Failed to save theme preference:", error);
+      const hasDark = document.documentElement.classList.contains("dark");
+      if (newTheme === "dark" && !hasDark) {
+        document.documentElement.classList.add("dark");
+      } else if (newTheme === "light" && hasDark) {
+        document.documentElement.classList.remove("dark");
+      }
+    }
   };
 
   return (
@@ -51,17 +93,20 @@ export default function SiteHeader() {
         </Link>
         <button
           onClick={toggleTheme}
-          className="p-2 rounded-lg text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100/80 dark:hover:bg-slate-900/70 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 dark:focus-visible:ring-slate-600 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900 cursor-pointer"
-          aria-label="Toggle theme"
+          className="p-2 rounded-lg text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100/80 dark:hover:bg-slate-900/70 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 dark:focus-visible:ring-slate-600 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900 cursor-pointer flex items-center justify-center"
+          aria-label={mounted ? `Switch to ${theme === "light" ? "dark" : "light"} mode` : "Toggle theme"}
+          type="button"
         >
-          {mounted && (
-            <>
-              {theme === "light" ? (
-                <MoonIcon className="w-5 h-5 sm:w-6 sm:h-6" />
-              ) : (
-                <SunIcon className="w-5 h-5 sm:w-6 sm:h-6" />
-              )}
-            </>
+          {theme === "light" ? (
+            <MoonIcon 
+              className="w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-200" 
+              aria-hidden="true"
+            />
+          ) : (
+            <SunIcon 
+              className="w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-200" 
+              aria-hidden="true"
+            />
           )}
         </button>
       </nav>

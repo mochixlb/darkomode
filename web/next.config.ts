@@ -10,6 +10,9 @@ function createContentSecurityPolicy(): string {
   if (isDev) {
     scriptSrc.push("'unsafe-eval'");
   }
+  // Allow inline scripts for theme initialization script in layout.tsx
+  // This is safe as it's a self-contained script that only accesses localStorage and DOM
+  scriptSrc.push("'unsafe-inline'");
 
   // Note: We allow 'unsafe-inline' for styles due to Next/font and inline style tags.
   // If you later add nonces/hashes, you can remove it.
