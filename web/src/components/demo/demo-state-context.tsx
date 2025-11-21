@@ -10,8 +10,7 @@ import React, {
 } from "react";
 import type { FilterSettings } from "@/types/index";
 import { DEFAULT_FILTERS, DARKO_MODE_ID } from "@/constants";
-// Import shared utility from extension
-import { buildFilterStrings } from "../../../../extension/src/utils/theme";
+import { buildFilterStrings } from "@/utils/utils";
 
 interface DemoState {
   filters: FilterSettings;

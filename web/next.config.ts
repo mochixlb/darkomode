@@ -58,6 +58,10 @@ const securityHeaders: Array<{ key: string; value: string }> = [
 const nextConfig: NextConfig = {
   // Hide "x-powered-by: Next.js"
   poweredByHeader: false,
+  // Set workspace root to silence Turbopack warning
+  turbopack: {
+    root: __dirname,
+  },
   async headers() {
     return [
       {
