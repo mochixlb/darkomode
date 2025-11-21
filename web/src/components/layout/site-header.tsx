@@ -3,7 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
+import clsx from "clsx";
 import { useEffect, useState } from "react";
+
+const NAV_HIDE_OFFSET = 80;
+const NAV_TOP_OFFSET = 8;
+const NAV_SCROLL_DELTA = 6;
 
 export default function SiteHeader() {
   const [theme, setTheme] = useState<"light" | "dark">(() => {
@@ -13,6 +18,9 @@ export default function SiteHeader() {
     return "light";
   });
   const [mounted, setMounted] = useState(false);
+  const [navHidden, setNavHidden] = useState(false);
+  const [isAtTop, setIsAtTop] = useState(true);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
     // Read initial theme from DOM (set by blocking script in layout)
@@ -33,6 +41,84 @@ export default function SiteHeader() {
 
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const handleChange = (event: MediaQueryListEvent) => {
+      setPrefersReducedMotion(event.matches);
+    };
+
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", handleChange);
+    } else {
+      mediaQuery.addListener(handleChange);
+    }
+
+    return () => {
+      if (typeof mediaQuery.removeEventListener === "function") {
+        mediaQuery.removeEventListener("change", handleChange);
+      } else {
+        mediaQuery.removeListener(handleChange);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      setNavHidden(false);
+    }
+  }, [prefersReducedMotion]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    let lastKnownScrollY = window.scrollY;
+    let rafId: number | null = null;
+
+    const updateScrollState = () => {
+      const currentY = window.scrollY;
+      const delta = currentY - lastKnownScrollY;
+
+      setIsAtTop(currentY <= NAV_TOP_OFFSET);
+
+      if (currentY <= NAV_HIDE_OFFSET) {
+        setNavHidden(false);
+      }
+
+      if (Math.abs(delta) > NAV_SCROLL_DELTA) {
+        const shouldHide =
+          !prefersReducedMotion && currentY > NAV_HIDE_OFFSET && delta > 0;
+        setNavHidden(shouldHide);
+        lastKnownScrollY = currentY;
+      }
+
+      rafId = null;
+    };
+
+    const handleScroll = () => {
+      if (rafId !== null) {
+        return;
+      }
+      rafId = window.requestAnimationFrame(updateScrollState);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      if (rafId !== null) {
+        window.cancelAnimationFrame(rafId);
+      }
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [prefersReducedMotion]);
 
   const toggleTheme = () => {
     console.log("toggleTheme called, mounted:", mounted, "current theme:", theme);
@@ -69,7 +155,18 @@ export default function SiteHeader() {
   };
 
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-200/80 dark:border-slate-800/80 bg-white dark:bg-black">
+    <header
+      className={clsx(
+        "sticky top-0 z-40 border-b border-slate-200/80 dark:border-slate-800/80 will-change-transform",
+        prefersReducedMotion
+          ? "transition-none"
+          : "transition-transform duration-300 ease-out",
+        navHidden && !prefersReducedMotion ? "-translate-y-full" : "translate-y-0",
+        isAtTop
+          ? "bg-white dark:bg-black"
+          : "bg-white/90 dark:bg-slate-950/90 shadow-sm shadow-slate-900/5 dark:shadow-black/40 supports-[backdrop-filter]:backdrop-blur-md"
+      )}
+    >
       <nav aria-label="Main navigation" className="w-full px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4 flex items-center justify-between max-w-7xl mx-auto">
         <Link
           href="/"
