@@ -189,9 +189,3 @@ Contributions are welcome! Please feel free to open an issue or submit a PR.
 4. Push to your branch (`git push origin feat/awesome-improvement`)
 5. Open a Pull Request
 
----
-
-## Acknowledgments
-
-- Built with **WXT**, **Vite**, **React**, and **TypeScript**
-- Inspired by the need for a clean, reliable dark mode on every site
