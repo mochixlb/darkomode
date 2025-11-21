@@ -55,19 +55,6 @@ export default function Home() {
               />
               <span>Add to Firefox</span>
             </a>
-            <a
-              href="#" // Replace with actual safari app store link
-              className="flex items-center justify-center gap-2.5 border border-slate-300 dark:border-slate-700 bg-white dark:bg-black text-slate-900 dark:text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg font-medium text-base sm:text-lg hover:bg-slate-50 dark:hover:bg-slate-900 hover:border-slate-400 dark:hover:border-slate-600 transition-colors w-full sm:w-auto"
-            >
-              <Image
-                src="/safari-logo.svg"
-                alt="Safari Logo"
-                width={28}
-                height={28}
-                className="w-6 h-6 sm:w-7 sm:h-7"
-              />
-              <span>Add to Safari</span>
-            </a>
           </div>
         </div>
       </main>

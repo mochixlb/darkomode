@@ -23,7 +23,6 @@ export const metadata: Metadata = {
     "eye strain",
     "chrome extension",
     "firefox extension",
-    "safari extension",
   ],
   authors: [{ name: "Darko Mode" }],
   creator: "Darko Mode",

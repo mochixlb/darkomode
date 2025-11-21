@@ -4,13 +4,10 @@
   "type": "module",
   "scripts": {
     "dev": "wxt",
-    "dev:safari": "wxt -b safari",
     "dev:firefox": "wxt -b firefox",
     "build": "wxt build",
-    "build:safari": "wxt build -b safari",
     "build:firefox": "wxt build -b firefox",
     "zip": "wxt zip",
-    "zip:safari": "wxt zip -b safari",
     "zip:firefox": "wxt zip -b firefox",
     "test": "vitest -c vitest.config.ts --run",
     "test:watch": "vitest -c vitest.config.ts",

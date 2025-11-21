@@ -5,6 +5,7 @@ import path from "path";
 export default defineConfig({
   outDir: "dist",
   entrypointsDir: "src/entrypoints",
+  manifestVersion: 3, // Force MV3 for all browsers including Firefox
   webExt: {
     disabled: true, // Disable auto-launch of browser
   },
@@ -34,40 +35,53 @@ export default defineConfig({
       },
     },
   }),
-  manifest: (env) => ({
-    name: "darko mode",
-    description: "Toggle dark mode and light mode on any website",
-    version: "1.0.0",
-    author: "Darko Mode",
-    homepage_url: "https://darkomode.com",
-    permissions: ["storage", "activeTab", "tabs"],
-    host_permissions: ["<all_urls>"],
-    icons: {
-      "16": "/icons/icon-16.png",
-      "32": "/icons/icon-32.png",
-      "48": "/icons/icon-48.png",
-      "128": "/icons/icon-128.png",
-    },
-    action: {
-      default_popup: "popup.html",
-      default_icon: {
+  manifest: (env) => {
+    const baseManifest: any = {
+      name: "darko mode",
+      description: "Toggle dark mode and light mode on any website",
+      version: "1.0.0",
+      author: "Darko Mode",
+      homepage_url: "https://darkomode.com",
+      permissions: ["storage", "activeTab", "tabs"],
+      host_permissions: ["<all_urls>"],
+      icons: {
         "16": "/icons/icon-16.png",
         "32": "/icons/icon-32.png",
         "48": "/icons/icon-48.png",
         "128": "/icons/icon-128.png",
       },
-      default_title: "darko mode",
-    },
+      action: {
+        default_popup: "popup.html",
+        default_icon: {
+          "16": "/icons/icon-16.png",
+          "32": "/icons/icon-32.png",
+          "48": "/icons/icon-48.png",
+          "128": "/icons/icon-128.png",
+        },
+        default_title: "darko mode",
+      },
+    };
+
     // Firefox-specific: Required data collection declaration (as of Nov 3, 2025)
     // Set to "none" since we don't collect any personal or behavioral data
-    ...(env.BROWSER === "firefox" && {
-      browser_specific_settings: {
+    // gecko.id is required for AMO submission (format: addon-name@yourdomain.com)
+    // Check multiple ways WXT might indicate Firefox build
+    const isFirefox = 
+      env.FIREFOX === true || 
+      env.BROWSER === "firefox" ||
+      (typeof process !== "undefined" && process.env.BROWSER === "firefox");
+    
+    if (isFirefox) {
+      baseManifest.browser_specific_settings = {
         gecko: {
+          id: "darko-mode@darkomode.com",
           data_collection_permissions: "none",
         },
-      },
-    }),
-  }),
+      };
+    }
+
+    return baseManifest;
+  },
 });
 
 

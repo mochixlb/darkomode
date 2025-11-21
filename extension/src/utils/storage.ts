@@ -50,7 +50,7 @@ export async function getSettings(): Promise<ExtensionSettings> {
     };
     return settings;
   } catch (_err) {
-    // Fallback to local in case sync is unavailable (e.g., Safari without iCloud)
+    // Fallback to local in case sync is unavailable
     try {
       const result = await browser.storage.local.get(keys);
       const settings: ExtensionSettings = {
@@ -87,7 +87,7 @@ export async function saveSettings(
   try {
     await (area.set as any)(settings);
   } catch (_err) {
-    // Fallback to local in case sync is unavailable (e.g., Safari without iCloud)
+    // Fallback to local in case sync is unavailable
     try {
       await browser.storage.local.set(settings);
     } catch (err: unknown) {

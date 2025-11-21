@@ -46,7 +46,7 @@
 ### Prerequisites
 
 - Node.js 18+ and npm (or pnpm/yarn)
-- Chrome/Firefox/Safari for loading the extension
+- Chrome/Firefox for loading the extension
 
 ### Install and Build
 
@@ -77,17 +77,8 @@ npm run build
    npm run build:firefox
    ```
 2. Open `about:debugging#/runtime/this-firefox`
-3. Click “Load Temporary Add-on”
+3. Click "Load Temporary Add-on"
 4. Choose the `manifest.json` inside `extension/dist/firefox-mv3`
-
-### Build for Safari
-
-```bash
-cd extension
-npm run build:safari
-```
-
-Open the generated project in Xcode to sign and run the Safari Web Extension.
 
 ### Package for Stores
 
@@ -95,7 +86,6 @@ Open the generated project in Xcode to sign and run the Safari Web Extension.
 cd extension
 npm run zip           # Chrome
 npm run zip:firefox   # Firefox
-npm run zip:safari    # Safari
 ```
 
 ---
