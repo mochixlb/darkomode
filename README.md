@@ -188,4 +188,3 @@ Contributions are welcome! Please feel free to open an issue or submit a PR.
 3. Commit your changes (`git commit -m 'feat: awesome improvement'`)
 4. Push to your branch (`git push origin feat/awesome-improvement`)
 5. Open a Pull Request
-
