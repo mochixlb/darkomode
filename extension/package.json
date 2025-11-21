@@ -1,0 +1,46 @@
+{
+  "name": "darko-mode",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "wxt",
+    "dev:safari": "wxt -b safari",
+    "dev:firefox": "wxt -b firefox",
+    "build": "wxt build",
+    "build:safari": "wxt build -b safari",
+    "build:firefox": "wxt build -b firefox",
+    "zip": "wxt zip",
+    "zip:safari": "wxt zip -b safari",
+    "zip:firefox": "wxt zip -b firefox",
+    "test": "vitest -c vitest.config.ts --run",
+    "test:watch": "vitest -c vitest.config.ts",
+    "test:ui": "vitest -c vitest.config.ts --ui",
+    "test:coverage": "vitest -c vitest.config.ts --coverage"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.268",
+    "@types/node": "^20.14.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitest/coverage-v8": "^2.1.4",
+    "autoprefixer": "^10.4.22",
+    "jsdom": "^27.2.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17",
+    "tailwindcss-animate": "^1.0.7",
+    "typescript": "^5.5.3",
+    "vite": "^5.3.1",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^2.1.4",
+    "wxt": "^0.20.11"
+  },
+  "dependencies": {
+    "@heroicons/react": "^2.2.0",
+    "@radix-ui/react-label": "^2.1.8",
+    "@radix-ui/react-radio-group": "^1.3.8",
+    "clsx": "^2.1.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^3.4.0"
+  }
+}
